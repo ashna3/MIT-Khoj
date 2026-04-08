@@ -1,5 +1,3 @@
-USE lost_found_db;
-
 DELIMITER //
 CREATE TRIGGER trg_claim_audit
 AFTER UPDATE ON claim
