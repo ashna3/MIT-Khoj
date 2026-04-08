@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Environment and secrets
+.env
+.env.*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime / logs
+*.log
+*.pid
+
+# Local uploads and generated files
+lost_found_backend/uploads/
+lost_found_frontend/client/public/__manus__/version.json

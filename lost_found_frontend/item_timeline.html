@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Item Timeline - MIT Khoj</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h2 class="brand-title" style="font-size: 20px;">MIT Khoj</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <li class="sidebar-nav-item"><a href="student_dashboard.html" class="sidebar-nav-link">Dashboard</a></li>
+        <li class="sidebar-nav-item"><a href="my_lost_reports.html" class="sidebar-nav-link">My Lost Reports</a></li>
+        <li class="sidebar-nav-item"><a href="browse_items.html" class="sidebar-nav-link">Browse Found Items</a></li>
+        <li class="sidebar-nav-item"><a href="report_found.html" class="sidebar-nav-link">Report Found Item</a></li>
+        <li class="sidebar-nav-item"><a href="report_lost.html" class="sidebar-nav-link">Report Lost Item</a></li>
+        <li class="sidebar-nav-item"><a href="my_claims.html" class="sidebar-nav-link">My Claims</a></li>
+        <li class="sidebar-nav-item"><a href="item_timeline.html" class="sidebar-nav-link active">Item Timeline</a></li>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <span class="sidebar-user-name" id="sidebar-user-name">Loading...</span>
+          <span class="sidebar-user-id" id="sidebar-user-reg-no">-</span>
+        </div>
+        <button class="btn btn-secondary" style="width: 100%;" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <h1 class="topbar-title">Item Timeline</h1>
+        <div class="topbar-right"><span id="topbar-user-name">Loading...</span></div>
+      </div>
+
+      <div class="content">
+        <div class="card" style="margin-bottom: 32px;">
+          <div style="margin-bottom: 12px; color: #666; font-size: 14px;">
+            This feature is meant for tracking the lifecycle of a found item in the system: reported, matched, claimed, or expired.
+            Students can view timelines only for items they reported or items they have claimed.
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <select id="item-id-input" style="flex: 1;">
+              <option value="">Select one of your items</option>
+            </select>
+            <button class="btn btn-primary" id="track-btn">Track</button>
+          </div>
+        </div>
+
+        <div id="timeline-section" style="display: none;">
+          <div class="card" style="margin-bottom: 24px;">
+            <div>
+              <h3 style="margin-bottom: 8px;">Item: <span id="timeline-item-title">-</span></h3>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <span>Status:</span>
+                <span class="badge" id="timeline-item-status" style="background-color: #e0e0e0; color: #0B132B;">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="timeline-container" style="position: relative; padding: 20px 0;"></div>
+        </div>
+
+        <div id="empty-state" style="display: none;">
+          <div class="card">
+            <div class="empty-state">
+              <div class="empty-state-icon">Track</div>
+              <div class="empty-state-title">Select one of your items to track</div>
+              <div class="empty-state-message">You can view timelines only for items you reported or claimed</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="not-found-state" style="display: none;">
+          <div class="card">
+            <div class="empty-state">
+              <div class="empty-state-icon">Missing</div>
+              <div class="empty-state-title">Item not found</div>
+              <div class="empty-state-message">No accessible item found for the selected entry</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pages/item-timeline.js"></script>
+</body>
+</html>

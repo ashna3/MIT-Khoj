@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Analytics — MIT Khoj</title>
+  <link rel="stylesheet" href="css/style.css?v=20260406c" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h2 class="brand-title" style="font-size: 20px;">MIT Khoj</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <li class="sidebar-nav-item">
+          <a href="admin_dashboard.html" class="sidebar-nav-link">Dashboard</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="admin_items.html" class="sidebar-nav-link">Manage Items</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="admin_claims.html" class="sidebar-nav-link">Manage Claims</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="admin_lost_reports.html" class="sidebar-nav-link">Lost Reports</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="admin_analytics.html" class="sidebar-nav-link active">Analytics</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="admin_users.html" class="sidebar-nav-link">User Management</a>
+        </li>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <span class="sidebar-user-name" id="sidebar-user-name">Loading...</span>
+          <span class="sidebar-user-id" id="sidebar-user-reg-no">—</span>
+        </div>
+        <button class="btn btn-secondary" style="width: 100%;" id="logout-btn">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Topbar -->
+      <div class="topbar">
+        <h1 class="topbar-title">Analytics Dashboard</h1>
+        <div class="topbar-right" style="display: flex; gap: 12px; align-items: center;">
+          <span id="last-updated" style="font-size: 12px; color: #666;"></span>
+          <button class="btn btn-primary" id="refresh-btn" style="font-size: 14px;">
+            Refresh
+          </button>
+          <span id="topbar-user-name">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Stat Cards -->
+        <div class="grid-4" id="stat-cards">
+          <div class="card">
+            <div style="color: #666; font-size: 14px; margin-bottom: 8px;">Overall Recovery Rate</div>
+            <div style="font-size: 32px; font-weight: 600; color: #F96E46;" id="recovery-rate">0%</div>
+          </div>
+          <div class="card">
+            <div style="color: #666; font-size: 14px; margin-bottom: 8px;">Avg Time to Recovery</div>
+            <div style="font-size: 32px; font-weight: 600; color: #F9C846;" id="avg-recovery-time">0 days</div>
+          </div>
+          <div class="card">
+            <div style="color: #666; font-size: 14px; margin-bottom: 8px;">Total Items This Month</div>
+            <div style="font-size: 32px; font-weight: 600; color: #28A745;" id="items-this-month">0</div>
+          </div>
+          <div class="card">
+            <div style="color: #666; font-size: 14px; margin-bottom: 8px;">Peak Loss Location</div>
+            <div style="font-size: 16px; font-weight: 600; color: #378ADD;" id="peak-location">—</div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid-2" style="margin-top: 32px;">
+          <div class="card">
+            <h3 style="margin-bottom: 16px;">Recovery Rate by Category</h3>
+            <canvas id="recovery-chart"></canvas>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 16px;">Monthly Trends</h3>
+            <canvas id="trends-chart"></canvas>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 16px;">Location Risk Scores (Top 10)</h3>
+            <canvas id="location-chart"></canvas>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 16px;">Item Status Breakdown</h3>
+            <canvas id="status-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- Tables -->
+        <div style="margin-top: 32px;">
+          <h2 style="margin-bottom: 16px;">Finder vs Loser Overlap</h2>
+          <div class="table-container">
+            <table id="overlap-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Reg No</th>
+                  <th>Items Found</th>
+                  <th>Lost Reports Filed</th>
+                </tr>
+              </thead>
+              <tbody id="overlap-tbody">
+                <tr>
+                  <td colspan="4" style="text-align: center; padding: 20px;">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px;">
+          <h2 style="margin-bottom: 16px;">Zero-Match Alerts</h2>
+          <div class="table-container">
+            <table id="alerts-table">
+              <thead>
+                <tr>
+                  <th>Reporter Name</th>
+                  <th>Item Title</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Days Unmatched</th>
+                </tr>
+              </thead>
+              <tbody id="alerts-tbody">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 20px;">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px;">
+          <h2 style="margin-bottom: 16px;">Top Finders by Reliability</h2>
+          <div class="table-container">
+            <table id="finders-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Reg No</th>
+                  <th>Items Found</th>
+                  <th>Successful Claims</th>
+                  <th>Reliability Score</th>
+                </tr>
+              </thead>
+              <tbody id="finders-tbody">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 20px;">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js?v=20260406c"></script>
+  <script src="js/auth.js?v=20260406c"></script>
+  <script src="js/main.js?v=20260406c"></script>
+  <script src="js/pages/admin-analytics.js?v=20260406c"></script>
+</body>
+</html>
+
+
+

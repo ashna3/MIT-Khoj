@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Found Item — MIT Khoj</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h2 class="brand-title" style="font-size: 20px;">MIT Khoj</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <li class="sidebar-nav-item">
+          <a href="student_dashboard.html" class="sidebar-nav-link">Dashboard</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="my_lost_reports.html" class="sidebar-nav-link">My Lost Reports</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="browse_items.html" class="sidebar-nav-link">Browse Found Items</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="report_found.html" class="sidebar-nav-link active">Report Found Item</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="report_lost.html" class="sidebar-nav-link">Report Lost Item</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="my_claims.html" class="sidebar-nav-link">My Claims</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="item_timeline.html" class="sidebar-nav-link">Item Timeline</a>
+        </li>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <span class="sidebar-user-name" id="sidebar-user-name">Loading...</span>
+          <span class="sidebar-user-id" id="sidebar-user-reg-no">—</span>
+        </div>
+        <button class="btn btn-secondary" style="width: 100%;" id="logout-btn">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Topbar -->
+      <div class="topbar">
+        <h1 class="topbar-title">Report Found Item</h1>
+        <div class="topbar-right">
+          <span id="topbar-user-name">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <div class="card report-form-card">
+          <!-- Form -->
+          <form id="report-form" style="display: block;">
+            <h2 style="margin-bottom: 24px;">Report a Found Item</h2>
+
+            <div class="form-group">
+              <label for="title">Item Title</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="e.g., Black iPhone 13"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Describe the item in detail"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category_id" required>
+                <option value="">Select a category</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="other-category-group" style="display: none;">
+              <label for="other-category">Other Category</label>
+              <input
+                type="text"
+                id="other-category"
+                name="other_category"
+                placeholder="Enter the category"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location Found</label>
+              <select id="location" name="location_found" required>
+                <option value="">Select a location</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="date-found">Date Found</label>
+              <input
+                type="date"
+                id="date-found"
+                name="reported_date"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="image">Upload Image (Optional)</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+              />
+              <small style="color: #666;">Max 5MB. Formats: JPG, PNG</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Report Item
+            </button>
+          </form>
+
+          <!-- Success Message -->
+          <div id="success-message" style="display: none;">
+            <div style="
+              background-color: #d4edda;
+              border: 1px solid #c3e6cb;
+              border-radius: 8px;
+              padding: 20px;
+              text-align: center;
+              margin-bottom: 20px;
+            ">
+              <div style="
+                font-size: 48px;
+                margin-bottom: 12px;
+              ">✅</div>
+              <h3 style="color: #155724; margin-bottom: 8px;">Item Reported Successfully!</h3>
+              <p style="color: #155724; margin-bottom: 16px;">
+                Item ID: <strong id="item-id">—</strong>
+              </p>
+              <p style="color: #666; font-size: 14px; margin-bottom: 16px;">
+                Your item has been added to the system. Students can now search for and claim this item.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="width: 100%;"
+              id="report-another-btn"
+            >
+              Report Another Item
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pages/report-found.js"></script>
+</body>
+</html>

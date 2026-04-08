@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Lost Reports - MIT Khoj</title>
+  <link rel="stylesheet" href="css/style.css?v=20260406c" />
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <h2 class="brand-title" style="font-size: 20px;">MIT Khoj</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <li class="sidebar-nav-item"><a href="admin_dashboard.html" class="sidebar-nav-link">Dashboard</a></li>
+        <li class="sidebar-nav-item"><a href="admin_items.html" class="sidebar-nav-link">Manage Items</a></li>
+        <li class="sidebar-nav-item"><a href="admin_claims.html" class="sidebar-nav-link">Manage Claims</a></li>
+        <li class="sidebar-nav-item"><a href="admin_lost_reports.html" class="sidebar-nav-link active">Lost Reports</a></li>
+        <li class="sidebar-nav-item"><a href="admin_analytics.html" class="sidebar-nav-link">Analytics</a></li>
+        <li class="sidebar-nav-item"><a href="admin_users.html" class="sidebar-nav-link">User Management</a></li>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <span class="sidebar-user-name" id="sidebar-user-name">Loading...</span>
+          <span class="sidebar-user-id" id="sidebar-user-reg-no">-</span>
+        </div>
+        <button class="btn btn-secondary" style="width: 100%;" id="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <div class="topbar">
+        <h1 class="topbar-title">All Lost Reports</h1>
+        <div class="topbar-right"><span id="topbar-user-name">Loading...</span></div>
+      </div>
+      <div class="content">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Lost ID</th>
+                <th>Title</th>
+                <th>Reporter</th>
+                <th>Reg No</th>
+                <th>Category</th>
+                <th>Lost Date</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Reported At</th>
+              </tr>
+            </thead>
+            <tbody id="lost-reports-tbody">
+              <tr><td colspan="9" style="text-align: center; padding: 40px;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js?v=20260406c"></script>
+  <script src="js/auth.js?v=20260406c"></script>
+  <script src="js/main.js?v=20260406c"></script>
+  <script src="js/pages/admin-lost-reports.js?v=20260406c"></script>
+</body>
+</html>
+
+
+
