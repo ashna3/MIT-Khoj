@@ -11,9 +11,19 @@ from routes.claims import claims_bp
 from routes.admin import admin_bp
 from routes.analytics import analytics_bp
 
+def _get_cors_origins():
+    raw_origins = Config.FRONTEND_ORIGINS or '*'
+    if raw_origins.strip() == '*':
+        return '*'
+    return [origin.strip() for origin in raw_origins.split(',') if origin.strip()]
+
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = Config.JWT_SECRET_KEY
-CORS(app, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/api/*": {"origins": _get_cors_origins()}},
+    supports_credentials=True
+)
 jwt = JWTManager(app)
 
 app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -31,5 +41,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_DIR
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/health')
+def health_check():
+    return {"success": True, "message": "MIT Khoj backend is running"}, 200
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)

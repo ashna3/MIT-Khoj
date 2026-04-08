@@ -9,3 +9,4 @@ class Config:
     DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
     DB_NAME = os.environ.get('DB_NAME', 'lost_found_db')
     JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'change-me-in-env')
+    FRONTEND_ORIGINS = os.environ.get('FRONTEND_ORIGINS', '*')

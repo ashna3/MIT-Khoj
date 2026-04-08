@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: mit-khoj-backend
+    runtime: python
+    rootDir: lost_found_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    plan: free
+    healthCheckPath: /health
