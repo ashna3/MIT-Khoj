@@ -15,7 +15,7 @@ services:
       - key: DB_USER
         value: root
       - key: DB_PASSWORD
-        sync: false
+        value: KlDhfTbLZwvOrTlfWoFMQTNNJDJXCVnB
       - key: DB_NAME
         value: railway
       - key: JWT_SECRET_KEY
