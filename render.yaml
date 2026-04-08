@@ -9,16 +9,16 @@ services:
     healthCheckPath: /health
     envVars:
       - key: DB_HOST
-        sync: false
+        value: maglev.proxy.rlwy.net
       - key: DB_PORT
-        value: "3306"
+        value: "35979"
       - key: DB_USER
-        sync: false
+        value: root
       - key: DB_PASSWORD
         sync: false
       - key: DB_NAME
-        sync: false
+        value: railway
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: FRONTEND_ORIGINS
-        value: "*"
+        value: "https://ashna3.github.io"
