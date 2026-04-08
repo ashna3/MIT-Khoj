@@ -4,7 +4,7 @@
  */
 
 // Configurable BASE_URL — change this to match your backend
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://mit-khoj-backend.onrender.com';
 
 function getApiMessage(payload, fallback = 'Something went wrong') {
   if (!payload) return fallback;

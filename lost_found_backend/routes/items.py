@@ -66,7 +66,8 @@ def _save_image(file_storage):
     stored_name = f"{uuid.uuid4().hex}.{extension}"
     save_path = os.path.join(current_app.config['UPLOAD_FOLDER'], stored_name)
     file_storage.save(save_path)
-    return f"http://localhost:5000/uploads/{stored_name}", None
+    base_url = request.host_url.rstrip('/')
+    return f"{base_url}/uploads/{stored_name}", None
 
 def _user_can_view_item(cursor, user_id, role, item_id):
     if role == 'admin':
